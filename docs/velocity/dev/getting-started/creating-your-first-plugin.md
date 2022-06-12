@@ -17,7 +17,7 @@ recommend you learn some basic Java before you continue.
 
 ## Set up your environment
 
-You're going to need the [JDK](/misc/java-install-update) and an IDE. If you don't have an IDE,
+You're going to need the [JDK](/misc/java-install) and an IDE. If you don't have an IDE,
 IntelliJ IDEA is recommended.
 
 ## Creating the project in your IDE
