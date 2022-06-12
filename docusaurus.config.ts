@@ -7,8 +7,9 @@ import navbar from "./config/navbar.config";
 import footer from "./config/footer.config";
 import { env } from "process";
 
-const url = env.VERCEL_URL ?? "https://docs.papermc.io"
 const preview = env.VERCEL_ENV === "preview"
+
+const url = (preview && env.VERCEL_URL) || "https://docs.papermc.io"
 
 const docsCommon: Options = {
   breadcrumbs: true,
