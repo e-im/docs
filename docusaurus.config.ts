@@ -5,12 +5,10 @@ import vsDark from "prism-react-renderer/themes/vsDark";
 import isCI from "is-ci";
 import navbar from "./config/navbar.config";
 import footer from "./config/footer.config";
+import { env } from "process";
 
-const isPreview = process.env.DEPLOY_PREVIEW === "true";
-
-const url = process.env.PAPER_DOCS_URL ?? "https://docs.papermc.io";
-const baseUrl = process.env.PAPER_DOCS_BASE_URL ?? "/";
-const completeUrl = url + baseUrl;
+const url = env.VERCEL_URL ?? "https://docs.papermc.io"
+const preview = env.VERCEL_ENV === "preview"
 
 const docsCommon: Options = {
   breadcrumbs: true,
@@ -26,13 +24,13 @@ const config: Config = {
   tagline:
     "Documentation for all projects under the PaperMC umbrella, including Paper, Velocity, and Waterfall.",
   url: url,
-  baseUrl: baseUrl,
+  baseUrl: "/",
   onBrokenLinks: isCI ? "throw" : "warn",
   onBrokenMarkdownLinks: isCI ? "throw" : "warn",
   onDuplicateRoutes: isCI ? "throw" : "error",
   favicon: "img/favicon.ico",
   trailingSlash: false,
-  noIndex: isPreview,
+  noIndex: preview,
   baseUrlIssueBanner: false,
   clientModules: [require.resolve("../src/css/custom.css")],
 
@@ -41,7 +39,7 @@ const config: Config = {
       loader: require.resolve("esbuild-loader"),
       options: {
         loader: "tsx",
-        target: isServer ? 'node12' : 'es2017'
+        target: isServer ? "node12" : "es2017",
       },
     }),
   },
@@ -147,12 +145,12 @@ const config: Config = {
               innerHTML: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                url: completeUrl,
+                url: url,
                 potentialAction: {
                   "@type": "SearchAction",
                   target: {
                     "@type": "EntryPoint",
-                    urlTemplate: `${completeUrl}search?q={search_term_string}`,
+                    urlTemplate: `${url}/search?q={search_term_string}`,
                   },
                   "query-input": "required name=search_term_string",
                 },
