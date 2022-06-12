@@ -1,4 +1,4 @@
-import type { Config, LoadContext, PluginOptions, Plugin, HtmlTags } from "@docusaurus/types";
+import type { Config } from "@docusaurus/types";
 import type { Options } from "@docusaurus/plugin-content-docs";
 import remarkA11yEmoji from "@fec/remark-a11y-emoji";
 import vsDark from "prism-react-renderer/themes/vsDark";
